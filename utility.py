@@ -42,3 +42,10 @@ def add_background(prs, slide, background_pic):
                                     width=prs.slide_width, height=prs.slide_height)
     slide.shapes._spTree.remove(pic._element)
     slide.shapes._spTree.insert(2, pic._element)
+
+def add_table(slide, rows, cols, location, size = (-1, -1)):
+    width = None
+    height = None
+    if size[0] > 0: width = size[0]
+    if size[1] > 0: height = size[1]
+    slide.shapes.add_table(rows, cols, location[0], location[1], width, height)

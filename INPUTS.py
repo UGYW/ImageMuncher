@@ -6,5 +6,4 @@ PATH_TO_DIRECTORIES = None
 PATH_TO_POWERPOINT = None
 # Example: PATH_TO_POWERPOINT = "path/to/my/powerpoint/important_powerpoint.pptx"
 
-PATH_TO_BACKGROUND_PIC = None
-
+PATH_TO_BACKGROUND_PIC = "/Users/MAGI/Dropbox/Business/Co-Op/RISE2019/ImageMuncher/ImageMuncher/BackgroundPic.png"

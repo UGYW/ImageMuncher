@@ -1,6 +1,7 @@
 # UTILIY FUNCTIONS FOR GETTING IMAGE DATA
 from constants import *
 import os
+from pptx.util import Cm
 
 # Reference: https://python-pptx.readthedocs.io/en/latest/api/shapes.html
 
@@ -33,3 +34,11 @@ def add_title(slide, title_text):
 
 def get_date(path):
     return os.path.basename(os.path.normpath(path))
+
+# https://github.com/scanny/python-pptx/issues/195
+def add_background(prs, slide, background_pic):
+    left = top = Cm(0)
+    pic = slide.shapes.add_picture(background_pic, left, top,
+                                    width=prs.slide_width, height=prs.slide_height)
+    slide.shapes._spTree.remove(pic._element)
+    slide.shapes._spTree.insert(2, pic._element)

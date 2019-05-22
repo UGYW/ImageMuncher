@@ -1,22 +1,35 @@
 # UTILIY FUNCTIONS FOR GETTING IMAGE DATA
 from constants import *
+import os
 
 # Reference: https://python-pptx.readthedocs.io/en/latest/api/shapes.html
 
-# TODO
 def get_sub_folder_paths(path_to_main_folder):
-    return []
+    contents = os.listdir(path_to_main_folder)
+    # Adds the path to the main folder in front for traversal
+    contents = [path_to_main_folder + "/" + i for i in contents if not '.' in i]
+    return contents
 
-# TODO
 def get_sub_folder_content_paths(path_to_sub_folder):
     # Make a dictionary based on type
-    return {}
+    res = {}
+    contents = os.listdir(path_to_sub_folder)
+    res[RGB] = [path_to_sub_folder + "/" + i for i in contents if RGB in i][0]
+    res[OXY] = [path_to_sub_folder + "/" + i for i in contents if OXY in i][0]
+    res[THI] = [path_to_sub_folder + "/" + i for i in contents if THI in i][0]
+    res[NIR] = [path_to_sub_folder + "/" + i for i in contents if NIR in i][0]
+    res[TWI] = [path_to_sub_folder + "/" + i for i in contents if TWI in i][0]
+    return res
 
-# TODO
 def add_picture(slide, picture, location, size = (-1, -1)):
-    return
+    width = None
+    height = None
+    if size[0] > 0: width = size[0]
+    if size[1] > 0: height = size[1]
+    slide.shapes.add_picture(picture, location[0], location[1], width, height)
 
-# TODO
 def add_title(slide, title_text):
-    return
+    slide.shapes.title.text = title_text
 
+def get_date(path):
+    return os.path.basename(os.path.normpath(path))

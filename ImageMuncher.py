@@ -3,16 +3,7 @@ from INPUTS import *
 from utility import *
 import os
 
-temp_path_to_pptx = "temp.pptx"
-temp_path_to_pics = ""
-
 def main():
-    if not os.path.exists(PATH_TO_DIRECTORIES):
-        print(str(PATH_TO_DIRECTORIES) + " is not a valid path!")
-
-    if not os.path.exists(PATH_TO_POWERPOINT):
-        print(str(PATH_TO_POWERPOINT) + " is not a valid path!")
-
     # Make a new presentation
     prs = Presentation()
 
@@ -26,10 +17,11 @@ def main():
         slide = prs.slides.add_slide(prs.slide_layouts[1])  # title and content layout
 
         # Add the title - using the sub folder path
-        add_title(slide, sub_folder_path)
+        title_text = get_date(sub_folder_path)
+        add_title(slide, title_text)
 
         # Add the caption (the RGB image) image
-        add_picture(slide, sub_folder_path[RGB], CAPTION_IMAGE_LOC, CAPTION_IMAGE_SIZE)
+        add_picture(slide, sub_folder_content_paths[RGB], CAPTION_IMAGE_LOC, CAPTION_IMAGE_SIZE)
 
         # Add the four images
         add_picture(slide, sub_folder_content_paths[OXY], UPPER_LEFT, MAIN_IMAGE_SIZE)

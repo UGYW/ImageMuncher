@@ -19,6 +19,9 @@ TABLE_SIZE = (Cm(22.87), Cm(1))
 TABLE_ROW_NUM = 1
 TABLE_COL_NUM = 7
 
+CAPTION_TXT_SIZE = (Cm(20), Cm(1.03))
+CAPTION_TXT_LOC = (Cm(7.43), Cm(17.43))
+
 RGB = "RGB"
 OXY = "Oxygenation"
 THI = "THI"

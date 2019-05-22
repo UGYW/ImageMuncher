@@ -1,14 +1,16 @@
 # UTILIY FUNCTIONS FOR GETTING IMAGE DATA
 from constants import *
 import os
-from pptx.util import Cm
+from pptx.util import Cm, Pt
+import re
+import os
 
 # Reference: https://python-pptx.readthedocs.io/en/latest/api/shapes.html
 
 def get_sub_folder_paths(path_to_main_folder):
     contents = os.listdir(path_to_main_folder)
     # Adds the path to the main folder in front for traversal
-    contents = [path_to_main_folder + "/" + i for i in contents if not '.' in i]
+    contents = [path_to_main_folder + "/" + i for i in contents if bool(re.match('[\d/-_]+$', i))]
     return contents
 
 def get_sub_folder_content_paths(path_to_sub_folder):
@@ -22,6 +24,17 @@ def get_sub_folder_content_paths(path_to_sub_folder):
     res[TWI] = [path_to_sub_folder + "/" + i for i in contents if TWI in i][0]
     return res
 
+def get_caption_text(path_to_main_folder):
+    # Gets what is assumed to be the only txt file in the main folder
+    contents = os.listdir(path_to_main_folder)
+    path_to_text = [path_to_main_folder + "/" + i for i in contents if ".txt" in i][0]
+    with open(path_to_text, 'r') as myfile:
+        text = myfile.read()
+    return text
+
+def get_date(path):
+    return os.path.basename(os.path.normpath(path))
+
 def add_picture(slide, picture, location, size = (-1, -1)):
     width = None
     height = None
@@ -31,9 +44,17 @@ def add_picture(slide, picture, location, size = (-1, -1)):
 
 def add_title(slide, title_text):
     slide.shapes.title.text = title_text
+    slide.shapes.title.font = Pt(12)
 
-def get_date(path):
-    return os.path.basename(os.path.normpath(path))
+FONT_SIZE = 12
+def add_text(slide, text, location, size = (-1, -1)):
+    width = None
+    height = None
+    if size[0] > 0: width = size[0]
+    if size[1] > 0: height = size[1]
+    textbox = slide.shapes.add_textbox(location[0], location[1], width, height)
+    textbox.text = text
+    textbox.size = Pt(12)
 
 # https://github.com/scanny/python-pptx/issues/195
 def add_background(prs, slide, background_pic):

@@ -9,6 +9,8 @@ def main():
 
     sub_folder_paths = get_sub_folder_paths(PATH_TO_DIRECTORIES)
 
+    caption_text = get_caption_text(PATH_TO_DIRECTORIES)
+
     # Make a new slide for each sub folder and its contents
     for sub_folder_path in sub_folder_paths:
         sub_folder_content_paths = get_sub_folder_content_paths(sub_folder_path)
@@ -22,6 +24,9 @@ def main():
         # Add the title - using the sub folder path
         title_text = get_date(sub_folder_path)
         add_title(slide, title_text)
+
+        # Add the caption text
+        add_text(slide, caption_text, CAPTION_TXT_LOC, CAPTION_IMAGE_SIZE)
 
         # Add the table
         add_table(slide, TABLE_ROW_NUM, TABLE_COL_NUM, TABLE_LOC, TABLE_SIZE)

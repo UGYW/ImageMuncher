@@ -2,8 +2,6 @@
 Makes a new powerpoint slide for each folder and
 populates that slide with the given images and location specifications.
 
-<!-- INSERT RESULT IMAGES -->
-
 ## Installation
 If you have a Mac, you should already have pip.
 Run `pip --version` from the console
@@ -28,6 +26,11 @@ in `INPUTS.py` with the specified values.
 2. Run the command `python3 ImageMuncher.py`.
 If you cannot run python3, it means you may not have python3 installed.
 
+_Recommended:
+Move the ImageMuncher folder to the directory containing all of the subfolders.
+Also, make sure there are no spaces in the name of the powerpoint._
+
+_If the powerpoint of the specified name does not yet exist, one will be created._
 
 ## Warning
 * This has only been run from a unix machine (mac) before,

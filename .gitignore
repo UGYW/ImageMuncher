@@ -5,3 +5,4 @@ test/*
 __pycache__
 test.pptx
 BackgroundPic.png
+INPUTS.py

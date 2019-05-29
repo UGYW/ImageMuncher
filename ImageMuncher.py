@@ -29,7 +29,8 @@ def main():
         add_text(slide, caption_text, CAPTION_TXT_LOC, CAPTION_IMAGE_SIZE)
 
         # Add the table
-        add_table(slide, TABLE_ROW_NUM, TABLE_COL_NUM, TABLE_LOC, TABLE_SIZE)
+        add_table(slide, SHORT_TABLE_ROW_NUM, SHORT_TABLE_COL_NUM, SHORT_TABLE_LOC, SHORT_TABLE_SIZE)
+        add_table(slide, LONG_TABLE_ROW_NUM, LONG_TABLE_COL_NUM, LONG_TABLE_LOC, LONG_TABLE_SIZE)
 
         # Add the caption (the RGB image) image
         add_picture(slide, sub_folder_content_paths[RGB], CAPTION_IMAGE_LOC, CAPTION_IMAGE_SIZE)
